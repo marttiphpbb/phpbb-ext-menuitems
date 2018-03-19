@@ -1,18 +1,18 @@
 <?php
 /**
-* phpBB Extension - marttiphpbb calendar
-* @copyright (c) 2014 - 2017 marttiphpbb <info@martti.be>
+* phpBB Extension - marttiphpbb menulinks
+* @copyright (c) 2014 - 2018 marttiphpbb <info@martti.be>
 * @license GNU General Public License, version 2 (GPL-2.0)
 */
 
-namespace marttiphpbb\calendar\event;
+namespace marttiphpbb\menulinks\event;
 
 use phpbb\controller\helper;
 use phpbb\template\template;
 use phpbb\language\language;
 use phpbb\event\data as event;
 
-use marttiphpbb\calendar\render\links;
+use marttiphpbb\menulinks\render\links;
 
 /**
 * @ignore
@@ -41,9 +41,7 @@ class main_listener implements EventSubscriberInterface
 
 	/**
 	* @param helper		$helper
-	* @param string		$php_ext
 	* @param template	$template
-	* @param language	$language
 	* @param links		$links
 	*/
 	public function __construct(
@@ -55,9 +53,7 @@ class main_listener implements EventSubscriberInterface
 	)
 	{
 		$this->helper = $helper;
-		$this->php_ext = $php_ext;
 		$this->template = $template;
-		$this->language = $language;
 		$this->links = $links;
 	}
 
@@ -66,7 +62,6 @@ class main_listener implements EventSubscriberInterface
 		return [
 			'core.user_setup'						=> 'core_user_setup',
 			'core.page_header'						=> 'core_page_header',
-			'core.viewonline_overwrite_location'	=> 'core_viewonline_overwrite_location',
 		];
 	}
 
@@ -74,7 +69,7 @@ class main_listener implements EventSubscriberInterface
 	{
 		$lang_set_ext = $event['lang_set_ext'];
 		$lang_set_ext[] = [
-			'ext_name' => 'marttiphpbb/calendar',
+			'ext_name' => 'marttiphpbb/menulinks',
 			'lang_set' => 'common',
 		];
 		$event['lang_set_ext'] = $lang_set_ext;
@@ -84,18 +79,7 @@ class main_listener implements EventSubscriberInterface
 	{
 		$this->links->assign_template_vars();
 		$this->template->assign_vars([
-			'U_CALENDAR'			=> $this->helper->route('marttiphpbb_calendar_defaultview_controller'),
-			'CALENDAR_EXTENSION'	=> $this->language->lang('CALENDAR_EXTENSION', '<a href="http://github.com/marttiphpbb/phpbb-ext-calendar">', '</a>'),
+			'U_MENULINKS'			=> $this->helper->route('marttiphpbb_menulinks_defaultview_controller'),
 		]);
 	}
-
-	public function core_viewonline_overwrite_location(event $event)
-	{
-		if (strrpos($event['row']['session_page'], 'app.' . $this->php_ext . '/calendar') === 0)
-		{
-			$event['location'] = $this->language->lang('CALENDAR_VIEWING');
-			$event['location_url'] = $this->helper->route('marttiphpbb_calendar_defaultview_controller');
-		}
-	}
-
 }

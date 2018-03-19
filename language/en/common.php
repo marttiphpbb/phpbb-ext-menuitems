@@ -1,8 +1,8 @@
 <?php
 
 /**
-* phpBB Extension - marttiphpbb calendar
-* @copyright (c) 2014 - 2017 marttiphpbb <info@martti.be>
+* phpBB Extension - marttiphpbb menulinks
+* @copyright (c) 2014 - 2018 marttiphpbb <info@martti.be>
 * @license GNU General Public License, version 2 (GPL-2.0)
 */
 
@@ -33,32 +33,6 @@ if (empty($lang) || !is_array($lang))
 
 $lang = array_merge($lang, [
 
-	'CALENDAR'						=> 'Calendar',
-	'CALENDAR_EXTENSION'			=> '%sCalendar%s extension for phpBB',
+	'MENULINKS'						=> 'Menu Links',
 
-// viewonline
-	'CALENDAR_VIEWING'			=> 'Viewing calendar',
-
-	/*
-	'CALENDAR_MONTH'			=> 'month',
-	'CALENDAR_DAY'				=> 'day',
-	'CALENDAR_YEAR'				=> 'year',
-	*/
-
-// %1$s : context (see below)
-	'calendar_format'	=> [
-		'MONTH_DAY_YEAR'				=> '%1$s %1$s %2$s, %3$s',
-		'MONTH_DAY_YEAR_TIME'			=> '%1$s %2$s, %3$s - %4$s',
-		'MONTH_DAY_DAY_YEAR'			=> '%1$s %2$s - %5$s, %3$s',
-		'MONTH_DAY_MONTH_DAY_YEAR'		=> '%1$s %2$s - %4$s %5$s, %6$s',
-		'MONTH_DAY_YEAR_MONTH_DAY_YEAR'	=> '%1$s %2$s, %3$s - %4$s %5$s, %6$s',
-	],
-
-// Calendar page
-
-	'CALENDAR_NEW_MOON'				=> 'New moon',
-	'CALENDAR_FIRST_QUARTER_MOON'	=> 'First quarter moon',
-	'CALENDAR_FULL_MOON'			=> 'Full moon',
-	'CALENDAR_THIRD_QUARTER_MOON'	=> 'Third quarter moon',
-	'CALENDAR_AT'					=> '@',
 ]);
