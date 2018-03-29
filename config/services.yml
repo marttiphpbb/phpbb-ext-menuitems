@@ -1,10 +1,8 @@
 services:
-    marttiphpbb.menulinks.main_listener:
-        class: marttiphpbb\menulinks\event\main_listener
+    marttiphpbb.menulinks.listener:
+        class: marttiphpbb\menulinks\event\listener
         arguments:
-            - '@controller.helper'
-            - '@template'
-            - '@marttiphpbb.menulinks.render.links'
+            - '@marttiphpbb.menulinks.service.links'
         tags:
             - { name: event.listener }
 
@@ -14,3 +12,8 @@ services:
             - '@config'
             - '@template'
             - '@language'
+
+    marttiphpbb.menulinks.service.links:
+        class: marttiphpbb\menulinks\service\links
+        arguments:
+            - '@dispatcher'

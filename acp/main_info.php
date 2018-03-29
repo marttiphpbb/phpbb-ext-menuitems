@@ -20,26 +20,6 @@ class main_info
 					'auth' => 'ext_marttiphpbb/menulinks && acl_a_board',
 					'cat' => ['ACP_MENULINKS'],
 				],
-				'page_rendering'	=> [
-					'title' => 'ACP_MENULINKS_PAGE_RENDERING',
-					'auth' => 'ext_marttiphpbb/menulinks && acl_a_board',
-					'cat' => ['ACP_MENULINKS'],
-				],				
-				'input'		=> [
-					'title'	=> 'ACP_MENULINKS_INPUT',
-					'auth'	=> 'ext_marttiphpbb/menulinks && acl_a_board',
-					'cat'	=> ['ACP_MENULINKS'],
-				],
-				'input_forums'		=> [
-					'title'	=> 'ACP_MENULINKS_INPUT_FORUMS',
-					'auth'	=> 'ext_marttiphpbb/menulinks && acl_a_board',
-					'cat'	=> ['ACP_MENULINKS'],
-				],
-				'include_assets'		=> [
-					'title'	=> 'ACP_MENULINKS_INCLUDE_ASSETS',
-					'auth'	=> 'ext_marttiphpbb/menulinks && acl_a_board',
-					'cat'	=> ['ACP_MENULINKS'],
-				],
 			],
 		];
 	}
