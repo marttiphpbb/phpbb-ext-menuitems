@@ -1,1 +1,10 @@
-<li class="rightside" data-last-responsive="true">{%- include '@marttiphpbb_menulinks/include/menu_item.html' -%}</li>
+{%- include '@marttiphpbb_menuitems/include/menu_item.html' -%}</li>
+
+  
+{%- for link, include_file in marttiphpbb_menuitems_links -%}          
+    <li class="rightside" data-last-responsive="true">
+        <a href="{{- link -}}" role="menuitem" aria-hidden="true">
+            {%- include include_file -%}
+        </a>
+    </li>
+{%- endfor -%}

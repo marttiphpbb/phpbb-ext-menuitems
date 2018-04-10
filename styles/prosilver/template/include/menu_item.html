@@ -1,15 +1,1 @@
-<a href="{{- U_MENULINKS -}}" role="menuitem" aria-hidden="true"><i class="icon fa-menulinks fa-fw"></i> {{ lang('MENULINKS') -}}</a>
-
-
-{%- set marttiphpbb_topicprefixtags_topic_id = topicrow.TOPIC_ID ?? searchresults.TOPIC_ID ?? -1 -%}
-{%- if marttiphpbb_topicprefixtags_tags[marttiphpbb_topicprefixtags_topic_id] is defined -%}
-    <span class="marttiphpbb-topicprefixtags-topicrow">    
-        {%- for t in marttiphpbb_topicprefixtags_tags[marttiphpbb_topicprefixtags_topic_id] -%}
-            {%- if t.include is defined -%}
-                {%- include t.include with {'var': t.var} only -%}
-            {%- else -%}
-                {{- t|raw -}}
-            {%- endif -%}
-        {%- endfor -%}&nbsp;
-    </span>
-{%- endif -%}
+<a href="{{- U_MENUITEMS -}}" role="menuitem" aria-hidden="true"><i class="icon fa-menuitems fa-fw"></i> {{ lang('MENUITEMS') -}}</a>

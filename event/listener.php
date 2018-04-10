@@ -1,15 +1,15 @@
 <?php
 /**
-* phpBB Extension - marttiphpbb menulinks
+* phpBB Extension - marttiphpbb menuitems
 * @copyright (c) 2014 - 2018 marttiphpbb <info@martti.be>
 * @license GNU General Public License, version 2 (GPL-2.0)
 */
 
-namespace marttiphpbb\menulinks\event;
+namespace marttiphpbb\menuitems\event;
 
 use phpbb\event\data as event;
 
-use marttiphpbb\menulinks\service\links;
+use marttiphpbb\menuitems\service\menuitems_dispatcher;
 
 /**
 * @ignore
@@ -21,15 +21,15 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 */
 class listener implements EventSubscriberInterface
 {
-	/* @var links */
-	protected $links;
+	/** @var menuitems_dispatcher */
+	protected $menuitems_dispatcher;
 
 	/**
-	* @param links	$links
+	* @param menuitems_dispatcher	$menuitems_dispatcher
 	*/
-	public function __construct(links $links)
+	public function __construct(menuitems_dispatcher $menuitems_dispatcher)
 	{
-		$this->links = $links;
+		$this->menuitems_dispatcher = $menuitems_dispatcher;
 	}
 
 	static public function getSubscribedEvents()
@@ -50,7 +50,7 @@ class listener implements EventSubscriberInterface
 	public function core_twig_environment_render_template_before(event $event)
 	{
 		$context = $event['context'];
-		$context['marttiphpbb_menulinks_links'] = $this->links->get_all();
+		$context['marttiphpbb_menuitems_links'] = $this->menuitems_dispatcher->get_all();
 		$event['context'] = $context;		
 	}
 }

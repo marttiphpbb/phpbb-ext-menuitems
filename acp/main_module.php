@@ -1,11 +1,11 @@
 <?php
 /**
-* phpBB Extension - marttiphpbb menulinks
+* phpBB Extension - marttiphpbb menuitems
 * @copyright (c) 2014 - 2018 marttiphpbb <info@martti.be>
 * @license GNU General Public License, version 2 (GPL-2.0)
 */
 
-namespace marttiphpbb\menulinks\acp;
+namespace marttiphpbb\menuitems\acp;
 
 class main_module
 {
@@ -18,28 +18,28 @@ class main_module
 		global $phpbb_container;
 
 		$language = $phpbb_container->get('language');
-		$language->add_lang('acp', 'marttiphpbb/menulinks');
-		add_form_key('marttiphpbb/menulinks');
+		$language->add_lang('acp', 'marttiphpbb/menuitems');
+		add_form_key('marttiphpbb/menuitems');
 
 		switch($mode)
 		{
 			case 'links':
 
-				$links = $phpbb_container->get('marttiphpbb.menulinks.render.links');
+				$links = $phpbb_container->get('marttiphpbb.menuitems.render.links');
 
 				$this->tpl_name = 'links';
-				$this->page_title = $language->lang('ACP_MENULINKS_LINKS');
+				$this->page_title = $language->lang('ACP_MARTTIPHPBB_MENUITEMS_LINKS');
 
 				if ($request->is_set_post('submit'))
 				{
-					if (!check_form_key('marttiphpbb/menulinks'))
+					if (!check_form_key('marttiphpbb/menuitems'))
 					{
 						trigger_error('FORM_INVALID');
 					}
 
-					$links->set($request->variable('links', [0 => 0]), $request->variable('menulinks_repo_link', 0));
+					$links->set($request->variable('links', [0 => 0]), $request->variable('menuitems_repo_link', 0));
 
-					trigger_error($language->lang('ACP_MENULINKS_SETTING_SAVED') . adm_back_link($this->u_action));
+					trigger_error($language->lang('ACP_MARTTIPHPBB_MENUITEMS_SETTING_SAVED') . adm_back_link($this->u_action));
 				}
 
 				$links->assign_acp_select_template_vars();

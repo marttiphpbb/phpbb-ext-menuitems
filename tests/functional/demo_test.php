@@ -1,20 +1,20 @@
 <?php
 /**
-* phpBB Extension - marttiphpbb menulinks
+* phpBB Extension - marttiphpbb menuitems
 * @copyright (c) 2014 - 2018 marttiphpbb <info@martti.be>
 * @license GNU General Public License, version 2 (GPL-2.0)
 */
 
-namespace marttiphpbb\menulinks\tests\functional;
+namespace marttiphpbb\menuitems\tests\functional;
 
 /**
 * @group functional
 */
-class menulinks_test extends \phpbb_functional_test_case
+class menuitems_test extends \phpbb_functional_test_case
 {
 	static protected function setup_extensions()
 	{
-		return ['marttiphpbb/menulinks'];
+		return ['marttiphpbb/menuitems'];
 	}
 
 	public function test_demo_acme()
@@ -22,7 +22,7 @@ class menulinks_test extends \phpbb_functional_test_case
 		$crawler = self::request('GET', 'app.php/demo/acme');
 		$this->assertContains('acme', $crawler->filter('h2')->text());
 
-		$this->add_lang_ext('marttiphpbb/menulinks', 'common');
+		$this->add_lang_ext('marttiphpbb/menuitems', 'common');
 		$this->assertContains($this->lang('DEMO_HELLO', 'marttiphpbb'), $crawler->filter('h2')->text());
 		$this->assertNotContains($this->lang('DEMO_GOODBYE', 'marttiphpbb'), $crawler->filter('h2')->text());
 

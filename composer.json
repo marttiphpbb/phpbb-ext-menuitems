@@ -1,11 +1,11 @@
 {
-	"name": "marttiphpbb/menulinks",
+	"name": "marttiphpbb/menuitems",
 	"type": "phpbb-extension",
-	"description": "Menu Links Extension for phpBB 3.2",
-	"homepage": "https://github.com/marttiphpbb/phpbb-ext-menulinks",
+	"description": "Menu Items Extension for phpBB 3.2",
+	"homepage": "https://github.com/marttiphpbb/phpbb-ext-menuitems",
 	"version": "0.1.0",
 	"time": "2017-03-18",
-	"keywords": ["phpbb", "extension", "menu", "links"],
+	"keywords": ["phpbb", "extension", "menu", "links", "menuitems"],
 	"license": "GPL-2.0",
 	"authors": [{
 			"name": "martti",
@@ -24,7 +24,7 @@
 		"version-check": {
 			"host": "marttiphpbb.github.io",
 			"directory": "/version",
-			"filename": "menulinks.json"
+			"filename": "menuitems.json"
 		}
 	}
 }

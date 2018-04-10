@@ -1,19 +1,26 @@
 services:
-    marttiphpbb.menulinks.listener:
-        class: marttiphpbb\menulinks\event\listener
+    marttiphpbb.menuitems.listener:
+        class: marttiphpbb\menuitems\event\listener
         arguments:
-            - '@marttiphpbb.menulinks.service.links'
+            - '@marttiphpbb.menuitems.service.links'
         tags:
             - { name: event.listener }
 
-    marttiphpbb.menulinks.render.links:
-        class: marttiphpbb\menulinks\render\links
+    marttiphpbb.menuitems.render.links:
+        class: marttiphpbb\menuitems\render\links
         arguments:
             - '@config'
             - '@template'
             - '@language'
 
-    marttiphpbb.menulinks.service.links:
-        class: marttiphpbb\menulinks\service\links
+    marttiphpbb.menuitems.service.menuitems_dispatcher:
+        class: marttiphpbb\menuitems\service\menuitems_dispatcher
         arguments:
             - '@dispatcher'
+            - '@marttiphpbb.menuitems.service.menuitems_cache'
+
+    marttiphpbb.menuitems.service.menuitems_cache:
+        class: marttiphpbb\menuitems\service\menuitems_cache
+        arguments:
+            - '@cache.driver'
+            - '@config_text'

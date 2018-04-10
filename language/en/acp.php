@@ -1,7 +1,7 @@
 <?php
 
 /**
-* phpBB Extension - marttiphpbb menulinks
+* phpBB Extension - marttiphpbb menuitems
 * @copyright (c) 2014 - 2018 marttiphpbb <info@martti.be>
 * @license GNU General Public License, version 2 (GPL-2.0)
 */
@@ -33,21 +33,21 @@ if (empty($lang) || !is_array($lang))
 
 $lang = array_merge($lang, [
 
-	'ACP_MENULINKS_SETTING_SAVED'						=> 'Settings have been saved successfully!',
+	'ACP_MARTTIPHPBB_MENUITEMS_SETTING_SAVED'						=> 'Settings have been saved successfully!',
 
 // rendering: links
-	'ACP_MENULINKS_LINKS'								=> 'Menu links',
-	'ACP_MENULINKS_LINK_LOCATIONS' 						=> 'Menu link locations',
+	'ACP_MARTTIPHPBB_MENUITEMS_ITEMS'								=> 'Menu items',
+	'ACP_MARTTIPHPBB_MENUITEMS_ITEM_LOCATIONS' 						=> 'Menu item locations',
 
-	'ACP_MENULINKS_OVERALL_HEADER_NAVIGATION_PREPEND'	=> 'Overall header navigation prepend',
-	'ACP_MENULINKS_OVERALL_HEADER_NAVIGATION_APPEND'	=> 'Overall header navigation append',
-	'ACP_MENULINKS_NAVBAR_HEADER_QUICK_LINKS_BEFORE'	=> 'Navbar header quick links before',
-	'ACP_MENULINKS_NAVBAR_HEADER_QUICK_LINKS_AFTER'		=> 'Navbar header quick links after',
-	'ACP_MENULINKS_OVERALL_HEADER_BREADCRUMBS_BEFORE'	=> 'Overall header breadcrumbs before',
-	'ACP_MENULINKS_OVERALL_HEADER_BREADCRUMBS_AFTER'	=> 'Overall header breadcrumbs after',
-	'ACP_MENULINKS_OVERALL_FOOTER_TIMEZONE_BEFORE'		=> 'Overall footer timezone before',
-	'ACP_MENULINKS_OVERALL_FOOTER_TIMEZONE_AFTER'		=> 'Overall footer timezone after',
-	'ACP_MENULINKS_OVERALL_FOOTER_TEAMLINK_BEFORE'		=> 'Overall footer teamlink before',
-	'ACP_MENULINKS_OVERALL_FOOTER_TEAMLINK_AFTER'		=> 'Overall footer teamlink after',
+	'ACP_MARTTIPHPBB_MENUITEMS_OVERALL_HEADER_NAVIGATION_PREPEND'	=> 'Overall header navigation prepend',
+	'ACP_MARTTIPHPBB_MENUITEMS_OVERALL_HEADER_NAVIGATION_APPEND'	=> 'Overall header navigation append',
+	'ACP_MARTTIPHPBB_MENUITEMS_NAVBAR_HEADER_QUICK_LINKS_BEFORE'	=> 'Navbar header quick links before',
+	'ACP_MARTTIPHPBB_MENUITEMS_NAVBAR_HEADER_QUICK_LINKS_AFTER'		=> 'Navbar header quick links after',
+	'ACP_MARTTIPHPBB_MENUITEMS_OVERALL_HEADER_BREADCRUMBS_BEFORE'	=> 'Overall header breadcrumbs before',
+	'ACP_MARTTIPHPBB_MENUITEMS_OVERALL_HEADER_BREADCRUMBS_AFTER'	=> 'Overall header breadcrumbs after',
+	'ACP_MARTTIPHPBB_MENUITEMS_OVERALL_FOOTER_TIMEZONE_BEFORE'		=> 'Overall footer timezone before',
+	'ACP_MARTTIPHPBB_MENUITEMS_OVERALL_FOOTER_TIMEZONE_AFTER'		=> 'Overall footer timezone after',
+	'ACP_MARTTIPHPBB_MENUITEMS_OVERALL_FOOTER_TEAMLINK_BEFORE'		=> 'Overall footer teamlink before',
+	'ACP_MARTTIPHPBB_MENUITEMS_OVERALL_FOOTER_TEAMLINK_AFTER'		=> 'Overall footer teamlink after',
 
 ]);

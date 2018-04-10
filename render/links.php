@@ -1,11 +1,11 @@
 <?php
 /**
-* phpBB Extension - marttiphpbb menulinks
+* phpBB Extension - marttiphpbb menuitems
 * @copyright (c) 2014 - 2018 marttiphpbb <info@martti.be>
 * @license GNU General Public License, version 2 (GPL-2.0)
 */
 
-namespace marttiphpbb\menulinks\render;
+namespace marttiphpbb\menuitems\render;
 
 use phpbb\config\config;
 use phpbb\template\template;
@@ -55,14 +55,14 @@ class links
 	 */
 	public function assign_template_vars():self
 	{
-		$links_enabled = $this->config['menulinks_links'];
+		$links_enabled = $this->config['menuitems_links'];
 		$template_vars = [];
 
 		foreach ($this->links as $key => $value)
 		{
 			if ($key & $links_enabled)
 			{
-				$template_vars['S_MENULINKS_' . $value] = true;
+				$template_vars['S_MENUITEMS_' . $value] = true;
 			}
 		}
 
@@ -75,9 +75,9 @@ class links
 	 */
 	public function assign_acp_select_template_vars():self
 	{
-		$links_enabled = $this->config['menulinks_links'];
+		$links_enabled = $this->config['menuitems_links'];
 
-		$this->template->assign_var('S_MENULINKS_REPO_LINK', $links_enabled & 1 ? true : false);
+		$this->template->assign_var('S_MENUITEMS_REPO_LINK', $links_enabled & 1 ? true : false);
 	
 		$links = $this->links;
 
@@ -88,7 +88,7 @@ class links
 			$this->template->assign_block_vars('links', [
 				'VALUE'			=> $key,
 				'S_SELECTED'	=> ($key & $links_enabled) ? true : false,
-				'LANG'			=> $this->language->lang('ACP_MENULINKS_' . $value),
+				'LANG'			=> $this->language->lang('ACP_MENUITEMS_' . $value),
 			]);
 		}
 		return $this;
@@ -99,9 +99,9 @@ class links
 	 * @param int		$repo_link
 	 * @return self
 	 */
-	public function set(array $links, int $menulinks_repo_link):self
+	public function set(array $links, int $menuitems_repo_link):self
 	{
-		$this->config->set('menulinks_links', array_sum($links) + $menulinks_repo_link);
+		$this->config->set('menuitems_links', array_sum($links) + $menuitems_repo_link);
 		return $this;
 	}
 }

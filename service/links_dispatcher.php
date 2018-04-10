@@ -10,7 +10,7 @@ namespace marttiphpbb\menulinks\service;
 
 use phpbb\event\dispatcher;
 
-class links
+class links_dispatcher
 {
 	/** @var dispatcher */
 	private $dispatcher;
@@ -31,19 +31,19 @@ class links
 	 */
 	public function trigger_event()
 	{	
-		$links = [];
+		$items = [];
 	
 		/**
 		 * To set menu links 
 		 *
 		 * @event 
-		 * @var array	links				push here your links 
+		 * @var array	links  push here your links 
 		 *
 		 */
 		$vars = ['links'];
-		$result = $this->dispatcher->trigger_event('marttiphpbb.menulinks.set_links', compact($vars));
+		$result = $this->dispatcher->trigger_event('marttiphpbb.menulinks.set_items', compact($vars));
 
-		if (count($result['links']))
+		if (count($result['items']))
 		{
 			$this->links[] = $result['links'];
 		}
@@ -54,6 +54,6 @@ class links
 	 */
 	public function get_all():array
 	{
-		return $this->links;
+		return $this->items;
 	}
 }
