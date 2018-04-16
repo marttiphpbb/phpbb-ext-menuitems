@@ -33,7 +33,7 @@ if (empty($lang) || !is_array($lang))
 
 $lang = array_merge($lang, [
 
-	'ACP_MARTTIPHPBB_MENUITEMS_SETTING_SAVED'						=> 'Settings have been saved successfully!',
+	'ACP_MARTTIPHPBB_MENUITEMS_SETTING_SAVED'						=> 'The settings have been saved successfully!',
 
 // rendering: links
 	'ACP_MARTTIPHPBB_MENUITEMS_ITEMS'								=> 'Menu items',
@@ -49,5 +49,4 @@ $lang = array_merge($lang, [
 	'ACP_MARTTIPHPBB_MENUITEMS_OVERALL_FOOTER_TIMEZONE_AFTER'		=> 'Overall footer timezone after',
 	'ACP_MARTTIPHPBB_MENUITEMS_OVERALL_FOOTER_TEAMLINK_BEFORE'		=> 'Overall footer teamlink before',
 	'ACP_MARTTIPHPBB_MENUITEMS_OVERALL_FOOTER_TEAMLINK_AFTER'		=> 'Overall footer teamlink after',
-
 ]);

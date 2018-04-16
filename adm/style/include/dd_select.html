@@ -1,0 +1,9 @@
+<dd><select name="menuitems[{{- key -}}][]" id="menuitems_{{- key -}}" size="10" multiple="multiple">
+	{%- for item in constant('marttiphpbb\\menuitems\\util\\items::ITEMS') -%}
+		<option value="{{- item -}}"{%- if marttiphpbb_menuitems.acp[key][m] is defined %} selected="selected"{%- endif -%}>
+			{{- lang('ACP_MARTTIPHPBB_MENUITEMS_'~(item|upper)) -}}
+		</option>
+	{%- endfor -%}
+	</select>
+</dd>
+

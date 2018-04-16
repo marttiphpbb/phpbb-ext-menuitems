@@ -1,3 +1,14 @@
-{%- if S_MARTTIPHPBB_MENUITEMS_SUM b_and constant('marttiphpbb\\menuitems\\render\\links::OVERALL_HEADER_NAVIGATION_APPEND') -%}
-{%- include '@marttiphpbb_menuitems/include/list_link.html' -%}
+{#- This file was generated with command ext-menuitems:generate -#}
+{%- if marttiphpbb_menuitems.items.overall_header_navigation_append -%}
+	{%- for item in marttiphpbb_menuitems.items.overall_header_navigation_append -%}
+		<li data-last-responsive="true">
+			<a href="{{- item.link -}}" role="menuitem" aria-hidden="true">
+				{%- if item.include is defined -%}
+					{%- include item.include with {'var': item.var, 'key': item.key} only -%}
+				{%- else -%}
+					{{- item.raw|raw -}}
+				{%- endif -%}
+			</a>
+		</li>
+	{%- endfor -%}
 {%- endif -%}

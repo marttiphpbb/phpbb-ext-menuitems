@@ -7,14 +7,14 @@
 
 namespace marttiphpbb\menuitems\migrations;
 
-use marttiphpbb\menuitems\service\links_cache;
+use marttiphpbb\menuitems\service\menuitems_store;
 
 class v_0_1_0 extends \phpbb\db\migration\migration
 {
 	public function update_data()
 	{
 		return [
-			['config_text.add', [links_cache::CONFIG_TEXT, serialize([])]],
+			['config_text.add', [menuitems_store::KEY, serialize([])]],
 		];
 	}
 }

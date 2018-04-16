@@ -1,19 +1,12 @@
 {%- include 'overall_header.html' -%}
 
-<h1>{{- lang('ACP_MARTTIPHPBB_MENUITEMS_LINKS') -}}</h1>
+<h1>{{- lang('ACP_MARTTIPHPBB_MENUITEMS_ITEMS') -}}</h1>
 
 <form id="acp_board" method="post" action="{{- U_ACTION -}}">
 	<fieldset>
 		<dl>
-			<dt><label for="links">{{- lang('ACP_MARTTIPHPBB_MENUITEMS_LINK_LOCATIONS') -}}</label></dt>
-			<dd><select name="links[]" id="links" size="10" multiple="multiple">
-				{%- for l in links -%}
-					<option value="{{- l.VALUE -}}"{%- if l.S_SELECTED %} selected="selected"{%- endif -%}>
-						{{- l.LANG -}}
-					</option>
-				{%- endfor -%}
-				</select>
-			</dd>
+			<dt><label for="links">{{- lang('ACP_MARTTIPHPBB_MENUITEMS_ITEM_LOCATIONS') -}}</label></dt>
+			{%- include '@marttiphpbb_menuitems/include/dd_select.html' with {'items': items} only -%}
 		</dl>
 	</fieldset>
 

@@ -37,20 +37,27 @@ class listener implements EventSubscriberInterface
 		return [
 			'core.page_header'	
 				=> 'core_page_header',
+			'core.adm_page_header'
+				=> 'core_adm_page_header',
 			'core.twig_environment_render_template_before'
 				=> 'core_twig_environment_render_template_before',
 		];
 	}
 
+	public function core_adm_page_header(event $event)
+	{
+		$this->menuitems_dispatcher->trigger_acp_event();
+	}
+
 	public function core_page_header(event $event)
 	{
-		$this->links->trigger_event();
+		$this->menuitems_dispatcher->trigger_event();
 	}
 
 	public function core_twig_environment_render_template_before(event $event)
 	{
 		$context = $event['context'];
-		$context['marttiphpbb_menuitems_links'] = $this->menuitems_dispatcher->get_all();
+		$context['marttiphpbb_menuitems']['items'] = $this->menuitems_dispatcher->get_items();
 		$event['context'] = $context;		
 	}
 }

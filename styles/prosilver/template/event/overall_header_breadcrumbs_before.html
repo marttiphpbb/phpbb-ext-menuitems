@@ -1,7 +1,7 @@
 {#- This file was generated with command ext-menuitems:generate -#}
-{%- if marttiphpbb_menuitems.items.overall_footer_timezone_after -%}
-	{%- for item in marttiphpbb_menuitems.items.overall_footer_timezone_after -%}
-		<li class="rightside" data-last-responsive="true">
+{%- if marttiphpbb_menuitems.items.overall_header_breadcrumbs_before -%}
+	{%- for item in marttiphpbb_menuitems.items.overall_header_breadcrumbs_before -%}
+		<li data-last-responsive="true">
 			<a href="{{- item.link -}}" role="menuitem" aria-hidden="true">
 				{%- if item.include is defined -%}
 					{%- include item.include with {'var': item.var, 'key': item.key} only -%}
