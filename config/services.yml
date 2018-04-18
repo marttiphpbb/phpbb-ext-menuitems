@@ -10,6 +10,8 @@ services:
         class: marttiphpbb\menuitems\event\listener
         arguments:
             - '@marttiphpbb.menuitems.service.menuitems_dispatcher'
+            - '@marttiphpbb.menuitems.service.menuitems_store'
+            - '@marttiphpbb.menuitems.acp'
         tags:
             - { name: event.listener }
 
@@ -24,3 +26,10 @@ services:
         arguments:
             - '@config_text'
             - '@cache.driver'
+
+    marttiphpbb.menuitems.acp:
+        class: marttiphpbb\menuitems\service\acp
+        arguments:
+            - '@marttiphpbb.menuitems.service.menuitems_store'
+            - '@request'
+            - '@language'

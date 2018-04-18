@@ -10,6 +10,9 @@ namespace marttiphpbb\menuitems\event;
 use phpbb\event\data as event;
 
 use marttiphpbb\menuitems\service\menuitems_dispatcher;
+use marttiphpbb\menuitems\service\menuitems_store;
+use marttiphpbb\menuitems\service\acp;
+use phpbb\template\template;
 
 /**
 * @ignore
@@ -22,31 +25,48 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 class listener implements EventSubscriberInterface
 {
 	/** @var menuitems_dispatcher */
-	protected $menuitems_dispatcher;
+	private $menuitems_dispatcher;
+
+	/** @var menuitems_store */
+	private $menuitems_store;
+
+	/** @var acp */
+	private $acp;
 
 	/**
-	* @param menuitems_dispatcher	$menuitems_dispatcher
+	* @param menuitems_dispatcher
+	* @param menuitems_store 
+	* @param acp
 	*/
-	public function __construct(menuitems_dispatcher $menuitems_dispatcher)
+	public function __construct(
+		menuitems_dispatcher $menuitems_dispatcher, 
+		menuitems_store $menuitems_store,
+		acp $acp
+	)
 	{
 		$this->menuitems_dispatcher = $menuitems_dispatcher;
+		$this->menuitems_store = $menuitems_store;
+		$this->acp = $acp;
 	}
 
 	static public function getSubscribedEvents()
 	{
-		return [
+		return [		
+			'core.acp_extensions_run_action_after'
+				=> 'core_acp_extensions_run_action_after',
 			'core.page_header'	
 				=> 'core_page_header',
-			'core.adm_page_header'
-				=> 'core_adm_page_header',
 			'core.twig_environment_render_template_before'
 				=> 'core_twig_environment_render_template_before',
 		];
 	}
 
-	public function core_adm_page_header(event $event)
+	public function core_acp_extensions_run_action_after(event $event)
 	{
-		$this->menuitems_dispatcher->trigger_acp_event();
+		if ($event['action'] === 'delete_data')
+		{
+			$this->menuitems_store->remove_extension($event['ext_name']);
+		}
 	}
 
 	public function core_page_header(event $event)
@@ -57,7 +77,12 @@ class listener implements EventSubscriberInterface
 	public function core_twig_environment_render_template_before(event $event)
 	{
 		$context = $event['context'];
-		$context['marttiphpbb_menuitems']['items'] = $this->menuitems_dispatcher->get_items();
-		$event['context'] = $context;		
+		$context['marttiphpbb_menuitems'] = [
+			'items'		=> $this->menuitems_dispatcher->get_items(),
+			'acp'		=> $this->acp->get_selected(),
+		];
+		$event['context'] = $context;	
+
+//		var_dump($this->menuitems_dispatcher->get_items());
 	}
 }

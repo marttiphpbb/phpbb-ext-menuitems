@@ -46,7 +46,7 @@ class menuitems_store
 		}
 		
 		$this->items = unserialize($this->config_text->get(self::KEY));
-		$this->cache->set(self::CACHE_KEY, $this->items);
+		$this->cache->put(self::CACHE_KEY, $this->items);
 	}
 
 	private function write()
@@ -70,17 +70,17 @@ class menuitems_store
 	public function get(string $extension_name, string $key):array
 	{
 		$this->load();
-		return $this->items[$extension_name][$key];
+		return $this->items[$extension_name][$key] ?? [];
 	}
 
-	public function set(string $extension_name, string $key, array $item_data)
+	public function set(string $extension_name, string $key, array $template_events)
 	{
 		$this->load();
-		$this->events[$extension_name][$key] = $item_data;
+		$this->items[$extension_name][$key] = $template_events;
 		$this->write();
 	}
 
-	public function remove_ext(string $extension_name)
+	public function remove_extension(string $extension_name)
 	{
 		$this->load();
 		unset($this->items[$extension_name]);

@@ -1,7 +1,7 @@
 {
 	"name": "marttiphpbb/menuitems",
 	"type": "phpbb-extension",
-	"description": "Menu Items Extension for phpBB 3.2",
+	"description": "Menu Items Extension for phpBB 3.2 (helper ext)",
 	"homepage": "https://github.com/marttiphpbb/phpbb-ext-menuitems",
 	"version": "0.1.0",
 	"time": "2017-03-18",

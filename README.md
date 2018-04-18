@@ -1,4 +1,4 @@
-# phpBB Extension - marttiphpbb Menu Items
+# phpBB Extension - marttiphpbb Menu Items (helper ext)
 
 ## This extension is only in the stage of initial development
 

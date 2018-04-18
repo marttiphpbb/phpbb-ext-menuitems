@@ -22,11 +22,9 @@ class menuitems_dispatcher
 	/** @var array */
 	private $items = [];
 
-	/** @var array */
-	private $selected = [];
-
 	/**
-	 * @param dispatcher $dispatcher
+	 * @param dispatcher
+	 * @param menuitems_store
 	*/
 	public function __construct(dispatcher $dispatcher, menuitems_store $menuitems_store)
 	{
@@ -35,7 +33,6 @@ class menuitems_dispatcher
 	}
 
 	/**
-	 * @param array 
 	 */
 	public function trigger_event()
 	{	
@@ -45,8 +42,8 @@ class menuitems_dispatcher
 		 * To set menu items 
 		 *
 		 * @event 
-		 * @var array	items  push here your item 
-		 * like this $items['vendor/extension', 'key'] = $item;
+		 * @var array	items  push here your items
+		 * like this $items['vendor/extension']['menu_key'] = $item;
 		 * where item is 
 		 * 1.) $item = [
 		 * 		'link'		=> '/path/to/your/page',
@@ -63,10 +60,12 @@ class menuitems_dispatcher
 		 * "raw"  is the raw content of your menu link.
 		 */
 		$vars = ['items'];
-		$result = $this->dispatcher->trigger_event('marttiphpbb.menuitems.set_items', compact($vars));
-
+		$result = $this->dispatcher->trigger_event('marttiphpbb.menuitems.add_items', compact($vars));
+			var_dump($result);
 		if (count($result['items']))
 		{
+
+
 			foreach ($result['items'] as $ext_name => $menu_ary)
 			{
 				if (!$this->menuitems_store->ext_is_present($ext_name))
@@ -78,82 +77,16 @@ class menuitems_dispatcher
 				{
 					$template_events = $this->menuitems_store->get($ext_name, $key);
 			
-					if (!count($positions))
+					if (!count($template_events))
 					{
 						continue;
 					}
 
-					$data[$key] = $key;
+					$data['key'] = $key;
 
 					foreach ($template_events as $template_event)
 					{
-						if (is_set($this->items[$position]))
-						{
-							$this->items[$template_event][] = $data;
-							continue;
-						}
-
-						$this->items[$template_event] = [$data];
-					}
-				}
-			}	
-		}		
-	}
-
-	/**
-	 * @param array 
-	 */
-	public function trigger_acp_event()
-	{	
-		$items = [];
-	
-		/**
-		 * To set menu items 
-		 *
-		 * @event 
-		 * @var array	items  push here your item 
-		 * like this $items['vendor/extension', 'key'] = $item;
-		 * where item is 
-		 * 1.) $item = [
-		 * 		'link'		=> '/path/to/your/page',
-		 * 		'include'	=> '@vendor_extension/your_include_file.html',
-		 * 		'var'		=> [], 
-		 * ];
-		 * "var" is an array or string passed as "var" to 
-		 * your include file. Also "key" is available in your included file.
-		 * 
-		 * 2.) $item = [
-		 * 		'link'		=> '/path/to/your/page',
-		 * 		'raw'		=> $raw, 
-		 * ];
-		 * "raw"  is the raw content of your menu link.
-		 */
-		$vars = ['items'];
-		$result = $this->dispatcher->trigger_event('marttiphpbb.menuitems.acp', compact($vars));
-
-		if (count($result['items']))
-		{
-			foreach ($result['items'] as $ext_name => $menu_ary)
-			{
-				if (!$this->menuitems_store->ext_is_present($ext_name))
-				{
-					continue;
-				}
-
-				foreach ($menu_ary as $key => $data)
-				{
-					$template_events = $this->menuitems_store->get($ext_name, $key);
-			
-					if (!count($positions))
-					{
-						continue;
-					}
-
-					$data[$key] = $key;
-
-					foreach ($template_events as $template_event)
-					{
-						if (is_set($this->items[$position]))
+						if (isset($this->items[$template_event]))
 						{
 							$this->items[$template_event][] = $data;
 							continue;
@@ -172,10 +105,5 @@ class menuitems_dispatcher
 	public function get_items():array
 	{
 		return $this->items;
-	}
-
-	public function get_selected():array 
-	{
-		return $this->selected;
 	}
 }
