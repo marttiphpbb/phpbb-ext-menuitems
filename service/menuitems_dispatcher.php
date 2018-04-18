@@ -61,11 +61,9 @@ class menuitems_dispatcher
 		 */
 		$vars = ['items'];
 		$result = $this->dispatcher->trigger_event('marttiphpbb.menuitems.add_items', compact($vars));
-			var_dump($result);
+
 		if (count($result['items']))
 		{
-
-
 			foreach ($result['items'] as $ext_name => $menu_ary)
 			{
 				if (!$this->menuitems_store->ext_is_present($ext_name))

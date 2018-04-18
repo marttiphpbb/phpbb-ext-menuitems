@@ -4,6 +4,8 @@
 
 This phpBB extension provides menu links for other extensions
 
+[Topic on phpBB.com](https://www.phpbb.com/community/viewtopic.php?f=456&t=2468816)
+
 ## Requirements
 
 phpBB 3.2+

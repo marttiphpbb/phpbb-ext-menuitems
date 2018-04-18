@@ -82,7 +82,5 @@ class listener implements EventSubscriberInterface
 			'acp'		=> $this->acp->get_selected(),
 		];
 		$event['context'] = $context;	
-
-//		var_dump($this->menuitems_dispatcher->get_items());
 	}
 }
