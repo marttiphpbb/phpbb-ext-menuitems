@@ -16,19 +16,14 @@ class menuitems_store
 	const KEY = 'marttiphpbb_menuitems';
 	const CACHE_KEY = '_' . self::KEY;
 
-	/** @var config_text */
-	private $config_text;
-
-	/** @var cache */
-	private $cache;
-	
-	/** @var array */
-	private $items = [];
+	protected $config_text;
+	protected $cache;
+	protected $items = [];
 
 	public function __construct(config_text $config_text, cache $cache)
 	{
-		$this->config_text = $config_text;	
-		$this->cache = $cache;		
+		$this->config_text = $config_text;
+		$this->cache = $cache;
 	}
 
 	private function load()
@@ -38,13 +33,13 @@ class menuitems_store
 			return;
 		}
 
-		$this->items = $this->cache->get(self::CACHE_KEY);		
-		
+		$this->items = $this->cache->get(self::CACHE_KEY);
+
 		if ($this->items)
 		{
 			return;
 		}
-		
+
 		$this->items = unserialize($this->config_text->get(self::KEY));
 		$this->cache->put(self::CACHE_KEY, $this->items);
 	}
@@ -61,7 +56,7 @@ class menuitems_store
 		$this->write();
 	}
 
-	public function get_all():array 
+	public function get_all():array
 	{
 		$this->load();
 		return $this->items;
@@ -87,7 +82,7 @@ class menuitems_store
 		$this->write();
 	}
 
-	public function get_extensions():array 
+	public function get_extensions():array
 	{
 		$this->load();
 		return array_keys($this->items);

@@ -14,23 +14,11 @@ use phpbb\language\language;
 
 class acp
 {
-	/** @var menuitems_store */
-	private $menuitems_store;
+	protected $menuitems_store;
+	protected $request;
+	protected $language;
+	protected $selected = [];
 
-	/** @var request */
-	private $request;
-
-	/** @var language */
-	private $language;
-
-	/** @var array */
-	private $selected = [];
-
-	/**
-	 * @param menuitems_store 
-	 * @param request
-	 * @param language
-	*/
 	public function __construct(menuitems_store $menuitems_store, request $request, language $language)
 	{
 		$this->menuitems_store = $menuitems_store;
@@ -44,7 +32,7 @@ class acp
 		{
 			return;
 		}
-		
+
 		$items = $this->request->variable('marttiphpbb_menuitems', ['' => ['' => '']]);
 
 		$this->menuitems_store->set($extension_name, $key, $items[$key] ?? []);
@@ -56,7 +44,7 @@ class acp
 		$this->language->add_lang('acp', 'marttiphpbb/menuitems');
 	}
 
-	public function get_selected():array 
+	public function get_selected():array
 	{
 		return $this->selected;
 	}

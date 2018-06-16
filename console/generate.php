@@ -44,9 +44,6 @@ EOT;
 		parent::__construct($user);
 	}
 
-	/**
-	* {@inheritdoc}
-	*/
 	protected function configure()
 	{
 		$this
@@ -55,11 +52,6 @@ EOT;
 		;
 	}
 
-	/**
-	* @param InputInterface 
-	* @param OutputInterface
-	* @return void
-	*/
 	protected function execute(InputInterface $input, OutputInterface $output)
 	{
 		$io = new SymfonyStyle($input, $output);
@@ -80,12 +72,12 @@ EOT;
 			$search = ['%name%', '%var%', '%class%'];
 			$replace = [$name, self::TPL_VAR, $class];
 			$content = str_replace($search, $replace, self::TPL);
-	
+
 			file_put_contents(self::PATH . $name . '.html', $content);
 
 			$io->writeln('<info>Listener generated: </><v>' . $name . '</>');
 		}
 
-		$io->writeln('');		
+		$io->writeln('');
 	}
 }

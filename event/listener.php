@@ -13,33 +13,16 @@ use marttiphpbb\menuitems\service\menuitems_dispatcher;
 use marttiphpbb\menuitems\service\menuitems_store;
 use marttiphpbb\menuitems\service\acp;
 use phpbb\template\template;
-
-/**
-* @ignore
-*/
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
-/**
-* Event listener
-*/
 class listener implements EventSubscriberInterface
 {
-	/** @var menuitems_dispatcher */
-	private $menuitems_dispatcher;
+	protected $menuitems_dispatcher;
+	protected $menuitems_store;
+	protected $acp;
 
-	/** @var menuitems_store */
-	private $menuitems_store;
-
-	/** @var acp */
-	private $acp;
-
-	/**
-	* @param menuitems_dispatcher
-	* @param menuitems_store 
-	* @param acp
-	*/
 	public function __construct(
-		menuitems_dispatcher $menuitems_dispatcher, 
+		menuitems_dispatcher $menuitems_dispatcher,
 		menuitems_store $menuitems_store,
 		acp $acp
 	)
@@ -51,10 +34,10 @@ class listener implements EventSubscriberInterface
 
 	static public function getSubscribedEvents()
 	{
-		return [		
+		return [
 			'core.acp_extensions_run_action_after'
 				=> 'core_acp_extensions_run_action_after',
-			'core.page_header'	
+			'core.page_header'
 				=> 'core_page_header',
 			'core.twig_environment_render_template_before'
 				=> 'core_twig_environment_render_template_before',
@@ -81,6 +64,6 @@ class listener implements EventSubscriberInterface
 			'items'		=> $this->menuitems_dispatcher->get_items(),
 			'acp'		=> $this->acp->get_selected(),
 		];
-		$event['context'] = $context;	
+		$event['context'] = $context;
 	}
 }

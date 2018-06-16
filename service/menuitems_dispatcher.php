@@ -13,49 +13,38 @@ use marttiphpbb\menuitems\service\menuitems_store;
 
 class menuitems_dispatcher
 {
-	/** @var dispatcher */
-	private $dispatcher;
+	protected $dispatcher;
+	protected $menuitems_store;
+	protected $items = [];
 
-	/** @var menuitems_store */
-	private $menuitems_store;
-
-	/** @var array */
-	private $items = [];
-
-	/**
-	 * @param dispatcher
-	 * @param menuitems_store
-	*/
 	public function __construct(dispatcher $dispatcher, menuitems_store $menuitems_store)
 	{
 		$this->dispatcher = $dispatcher;
 		$this->menuitems_store = $menuitems_store;
 	}
 
-	/**
-	 */
 	public function trigger_event()
-	{	
+	{
 		$items = [];
-	
+
 		/**
-		 * To set menu items 
+		 * To set menu items
 		 *
-		 * @event 
+		 * @event
 		 * @var array	items  push here your items
 		 * like this $items['vendor/extension']['menu_key'] = $item;
-		 * where item is 
+		 * where item is
 		 * 1.) $item = [
 		 * 		'link'		=> '/path/to/your/page',
 		 * 		'include'	=> '@vendor_extension/your_include_file.html',
-		 * 		'var'		=> [], 
+		 * 		'var'		=> [],
 		 * ];
-		 * "var" is an array or string passed as "var" to 
+		 * "var" is an array or string passed as "var" to
 		 * your include file. Also "key" is available in your included file.
-		 * 
+		 *
 		 * 2.) $item = [
 		 * 		'link'		=> '/path/to/your/page',
-		 * 		'raw'		=> $raw, 
+		 * 		'raw'		=> $raw,
 		 * ];
 		 * "raw"  is the raw content of your menu link.
 		 */
@@ -74,7 +63,7 @@ class menuitems_dispatcher
 				foreach ($menu_ary as $key => $data)
 				{
 					$template_events = $this->menuitems_store->get($ext_name, $key);
-			
+
 					if (!count($template_events))
 					{
 						continue;
@@ -93,8 +82,8 @@ class menuitems_dispatcher
 						$this->items[$template_event] = [$data];
 					}
 				}
-			}	
-		}		
+			}
+		}
 	}
 
 	/**
