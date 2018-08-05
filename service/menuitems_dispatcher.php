@@ -49,7 +49,7 @@ class menuitems_dispatcher
 		 * "raw"  is the raw content of your menu link.
 		 */
 		$vars = ['items'];
-		$result = $this->dispatcher->trigger_event('marttiphpbb.menuitems.add_items', compact($vars));
+		$result = $this->dispatcher->trigger_event('marttiphpbb.menuitems', compact($vars));
 
 		if (count($result['items']))
 		{
