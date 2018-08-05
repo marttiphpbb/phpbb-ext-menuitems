@@ -8,20 +8,21 @@
 
 namespace marttiphpbb\menuitems\service;
 
-use marttiphpbb\menuitems\service\menuitems_store;
+use marttiphpbb\menuitems\service\store;
 use phpbb\request\request;
 use phpbb\language\language;
+use marttiphpbb\menuitems\util\cnst;
 
 class acp
 {
-	protected $menuitems_store;
+	protected $store;
 	protected $request;
 	protected $language;
 	protected $selected = [];
 
-	public function __construct(menuitems_store $menuitems_store, request $request, language $language)
+	public function __construct(store $store, request $request, language $language)
 	{
-		$this->menuitems_store = $menuitems_store;
+		$this->store = $store;
 		$this->request = $request;
 		$this->language = $language;
 	}
@@ -33,15 +34,15 @@ class acp
 			return;
 		}
 
-		$items = $this->request->variable('marttiphpbb_menuitems', ['' => ['' => '']]);
+		$items = $this->request->variable(cnst::ID, ['' => ['' => '']]);
 
-		$this->menuitems_store->set($extension_name, $key, $items[$key] ?? []);
+		$this->store->set($extension_name, $key, $items[$key] ?? []);
 	}
 
 	public function assign_to_template(string $extension_name)
 	{
-		$this->selected = $this->menuitems_store->get_all()[$extension_name] ?? [];
-		$this->language->add_lang('acp', 'marttiphpbb/menuitems');
+		$this->selected = $this->store->get_all()[$extension_name] ?? [];
+		$this->language->add_lang('acp', cnst::FOLDER);
 	}
 
 	public function get_selected():array

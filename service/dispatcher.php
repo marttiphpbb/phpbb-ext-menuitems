@@ -8,19 +8,19 @@
 
 namespace marttiphpbb\menuitems\service;
 
-use phpbb\event\dispatcher;
-use marttiphpbb\menuitems\service\menuitems_store;
+use phpbb\event\dispatcher as core_dispatcher;
+use marttiphpbb\menuitems\service\store;
 
-class menuitems_dispatcher
+class dispatcher
 {
-	protected $dispatcher;
-	protected $menuitems_store;
+	protected $core_dispatcher;
+	protected $store;
 	protected $items = [];
 
-	public function __construct(dispatcher $dispatcher, menuitems_store $menuitems_store)
+	public function __construct(core_dispatcher $core_dispatcher, store $store)
 	{
-		$this->dispatcher = $dispatcher;
-		$this->menuitems_store = $menuitems_store;
+		$this->core_dispatcher = $core_dispatcher;
+		$this->store = $store;
 	}
 
 	public function trigger_event()
@@ -49,20 +49,20 @@ class menuitems_dispatcher
 		 * "raw"  is the raw content of your menu link.
 		 */
 		$vars = ['items'];
-		$result = $this->dispatcher->trigger_event('marttiphpbb.menuitems', compact($vars));
+		$result = $this->core_dispatcher->trigger_event('marttiphpbb.menuitems', compact($vars));
 
 		if (count($result['items']))
 		{
 			foreach ($result['items'] as $ext_name => $menu_ary)
 			{
-				if (!$this->menuitems_store->ext_is_present($ext_name))
+				if (!$this->store->ext_is_present($ext_name))
 				{
 					continue;
 				}
 
 				foreach ($menu_ary as $key => $data)
 				{
-					$template_events = $this->menuitems_store->get($ext_name, $key);
+					$template_events = $this->store->get($ext_name, $key);
 
 					if (!count($template_events))
 					{
@@ -86,9 +86,6 @@ class menuitems_dispatcher
 		}
 	}
 
-	/**
-	 * @return array
-	 */
 	public function get_items():array
 	{
 		return $this->items;

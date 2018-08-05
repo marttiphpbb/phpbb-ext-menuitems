@@ -7,9 +7,9 @@
 
 namespace marttiphpbb\menuitems\migrations;
 
-use marttiphpbb\menuitems\service\menuitems_store;
+use marttiphpbb\menuitems\util\cnst;
 
-class v_0_1_0 extends \phpbb\db\migration\migration
+class mgr_1 extends \phpbb\db\migration\migration
 {
 	static public function depends_on()
 	{
@@ -21,7 +21,7 @@ class v_0_1_0 extends \phpbb\db\migration\migration
 	public function update_data()
 	{
 		return [
-			['config_text.add', [menuitems_store::KEY, serialize([])]],
+			['config_text.add', [cnst::ID, serialize([])]],
 		];
 	}
 }

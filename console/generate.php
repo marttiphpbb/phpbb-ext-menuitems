@@ -15,7 +15,7 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Component\Console\Formatter\OutputFormatterStyle;
 use phpbb\console\command\command;
 use phpbb\user;
-use marttiphpbb\menuitems\util\items;
+use marttiphpbb\menuitems\util\cnst;
 
 class generate extends command
 {
@@ -66,7 +66,7 @@ EOT;
 			'</>',
 		]);
 
-		foreach (items::ITEMS as $name)
+		foreach (cnst::ITEMS as $name)
 		{
 			$class = strpos($name, 'overall_footer_') === 0 ? self::TPL_CLASS_FOOTER : '';
 			$search = ['%name%', '%var%', '%class%'];

@@ -9,26 +9,26 @@ namespace marttiphpbb\menuitems\event;
 
 use phpbb\event\data as event;
 
-use marttiphpbb\menuitems\service\menuitems_dispatcher;
-use marttiphpbb\menuitems\service\menuitems_store;
+use marttiphpbb\menuitems\service\dispatcher;
+use marttiphpbb\menuitems\service\store;
 use marttiphpbb\menuitems\service\acp;
 use phpbb\template\template;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class listener implements EventSubscriberInterface
 {
-	protected $menuitems_dispatcher;
-	protected $menuitems_store;
+	protected $dispatcher;
+	protected $store;
 	protected $acp;
 
 	public function __construct(
-		menuitems_dispatcher $menuitems_dispatcher,
-		menuitems_store $menuitems_store,
+		dispatcher $dispatcher,
+		store $store,
 		acp $acp
 	)
 	{
-		$this->menuitems_dispatcher = $menuitems_dispatcher;
-		$this->menuitems_store = $menuitems_store;
+		$this->dispatcher = $dispatcher;
+		$this->store = $store;
 		$this->acp = $acp;
 	}
 
@@ -48,20 +48,20 @@ class listener implements EventSubscriberInterface
 	{
 		if ($event['action'] === 'delete_data')
 		{
-			$this->menuitems_store->remove_extension($event['ext_name']);
+			$this->store->remove_extension($event['ext_name']);
 		}
 	}
 
 	public function core_page_header(event $event)
 	{
-		$this->menuitems_dispatcher->trigger_event();
+		$this->dispatcher->trigger_event();
 	}
 
 	public function core_twig_environment_render_template_before(event $event)
 	{
 		$context = $event['context'];
 		$context['marttiphpbb_menuitems'] = [
-			'items'		=> $this->menuitems_dispatcher->get_items(),
+			'items'		=> $this->dispatcher->get_items(),
 			'acp'		=> $this->acp->get_selected(),
 		];
 		$event['context'] = $context;

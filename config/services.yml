@@ -9,20 +9,20 @@ services:
     marttiphpbb.menuitems.listener:
         class: marttiphpbb\menuitems\event\listener
         arguments:
-            - '@marttiphpbb.menuitems.service.menuitems_dispatcher'
-            - '@marttiphpbb.menuitems.service.menuitems_store'
+            - '@marttiphpbb.menuitems.dispatcher'
+            - '@marttiphpbb.menuitems.store'
             - '@marttiphpbb.menuitems.acp'
         tags:
             - { name: event.listener }
 
-    marttiphpbb.menuitems.service.menuitems_dispatcher:
-        class: marttiphpbb\menuitems\service\menuitems_dispatcher
+    marttiphpbb.menuitems.dispatcher:
+        class: marttiphpbb\menuitems\service\dispatcher
         arguments:
             - '@dispatcher'
-            - '@marttiphpbb.menuitems.service.menuitems_store'
+            - '@marttiphpbb.menuitems.store'
 
-    marttiphpbb.menuitems.service.menuitems_store:
-        class: marttiphpbb\menuitems\service\menuitems_store
+    marttiphpbb.menuitems.store:
+        class: marttiphpbb\menuitems\service\store
         arguments:
             - '@config_text'
             - '@cache.driver'
@@ -30,6 +30,6 @@ services:
     marttiphpbb.menuitems.acp:
         class: marttiphpbb\menuitems\service\acp
         arguments:
-            - '@marttiphpbb.menuitems.service.menuitems_store'
+            - '@marttiphpbb.menuitems.store'
             - '@request'
             - '@language'

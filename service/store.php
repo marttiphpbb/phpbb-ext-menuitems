@@ -10,12 +10,10 @@ namespace marttiphpbb\menuitems\service;
 
 use phpbb\config\db_text as config_text;
 use phpbb\cache\driver\driver_interface as cache;
+use marttiphpbb\menuitems\util\cnst;
 
 class menuitems_store
 {
-	const KEY = 'marttiphpbb_menuitems';
-	const CACHE_KEY = '_' . self::KEY;
-
 	protected $config_text;
 	protected $cache;
 	protected $items = [];
@@ -33,21 +31,21 @@ class menuitems_store
 			return;
 		}
 
-		$this->items = $this->cache->get(self::CACHE_KEY);
+		$this->items = $this->cache->get(cnst::CACHE_ID);
 
 		if ($this->items)
 		{
 			return;
 		}
 
-		$this->items = unserialize($this->config_text->get(self::KEY));
-		$this->cache->put(self::CACHE_KEY, $this->items);
+		$this->items = unserialize($this->config_text->get(cnst::ID));
+		$this->cache->put(cnst::CACHE_ID, $this->items);
 	}
 
 	private function write()
 	{
-		$this->config_text->set(self::KEY, serialize($this->items));
-		$this->cache->put(self::CACHE_KEY, $this->items);
+		$this->config_text->set(cnst::ID, serialize($this->items));
+		$this->cache->put(cnst::CACHE_ID, $this->items);
 	}
 
 	public function set_all(array $items)
