@@ -12,7 +12,7 @@ use phpbb\config\db_text as config_text;
 use phpbb\cache\driver\driver_interface as cache;
 use marttiphpbb\menuitems\util\cnst;
 
-class menuitems_store
+class store
 {
 	protected $config_text;
 	protected $cache;
