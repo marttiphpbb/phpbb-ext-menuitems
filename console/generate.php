@@ -28,11 +28,7 @@ class generate extends command
 	{%- for item in %var%.%name% -%}
 		<li%class% data-last-responsive="true">
 			<a href="{{- item.link -}}" role="menuitem" aria-hidden="true">
-				{%- if item.include is defined -%}
-					{%- include item.include with {'var': item.var, 'key': item.key} only -%}
-				{%- else -%}
-					{{- item.raw|raw -}}
-				{%- endif -%}
+				{%- include item.include with {'var': item.var, 'key': item.key} only -%}
 			</a>
 		</li>
 	{%- endfor -%}
