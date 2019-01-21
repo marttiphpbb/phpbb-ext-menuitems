@@ -28,25 +28,20 @@ class dispatcher
 		$items = [];
 
 		/**
-		 * To set menu items
+		 * To push menu items
 		 *
 		 * @event
 		 * @var array	items  push here your items
-		 * like this $items['vendor/extension']['menu_key'] = $item;
+		 * like this $items['vendor/extension']['key'] = $item;
 		 * where item is
-		 * 1.) $item = [
+		 * [
 		 * 		'link'		=> '/path/to/your/page',
 		 * 		'include'	=> '@vendor_extension/your_include_file.html',
 		 * 		'var'		=> [],
 		 * ];
 		 * "var" is an array or string passed as "var" to
 		 * your include file. Also "key" is available in your included file.
-		 *
-		 * 2.) $item = [
-		 * 		'link'		=> '/path/to/your/page',
-		 * 		'raw'		=> $raw,
-		 * ];
-		 * "raw"  is the raw content of your menu link.
+		 * The menu item
 		 */
 		$vars = ['items'];
 		$result = $this->core_dispatcher->trigger_event('marttiphpbb.menuitems.add_items', compact($vars));

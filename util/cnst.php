@@ -12,6 +12,8 @@ class cnst
 	const FOLDER = 'marttiphpbb/menuitems';
 	const ID = 'marttiphpbb_menuitems';
 	const PREFIX = self::ID . '_';
+	const NAME_EN = self::PREFIX . 'en';
+	const NAME_PRIORITY = self::PREFIX . 'priority';
 	const CACHE_ID = '_' . self::ID;
 	const L = 'MARTTIPHPBB_MENUITEMS';
 	const L_ACP = 'ACP_' . self::L;

@@ -35,6 +35,8 @@ class acp
 		}
 
 		$items = $this->request->variable(cnst::ID, ['' => ['' => '']]);
+		$enabled_ary = $this->request->variable(cnst::NAME_EN, ['' => ['' => '']]);
+		$priority_ary = $this->request->variable(cnst::PRIORITY_EN, ['' => ['' => 0]]);
 
 		$this->store->set($extension_name, $key, $items[$key] ?? []);
 	}
