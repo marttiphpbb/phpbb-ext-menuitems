@@ -1,0 +1,30 @@
+<table>
+	<thead>
+		<tr>
+			<th>
+				{{- lang('ACP_MARTTIPHPBB_MENUITEMS_ENABLE') -}}
+			</th>
+			<th>
+				{{- lang('ACP_MARTTIPHPBB_MENUITEMS_PRIORITY') -}}
+			</th>
+			<th>
+				{{- lang('ACP_MARTTIPHPBB_MENUITEMS_NAME') -}}
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+	{%- for item in constant('marttiphpbb\\menuitems\\util\\cnst::ITEMS') -%}
+		<tr>
+			<td>
+				<input type="checkbox" name="marttiphpbb_menuitems_en[{{- item -}}]"{%- if marttiphpbb_menuitems.acp.en[item] is defined %} checked="checked"{%- endif -%}>
+			</td>
+			<td>
+				<input type="number" name="marttiphpbb_menuitems_priority[{{- item -}}]" value="{{- marttiphpbb_menuitems.priority[item] ?? 0 -}}">
+			</td>
+			<td>
+				{{- lang('ACP_MARTTIPHPBB_MENUITEMS_'~(item|upper)) -}}
+			</td>
+		</tr>
+	{%- endfor -%}
+	</tbody>
+</table>
