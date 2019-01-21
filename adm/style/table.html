@@ -16,10 +16,10 @@
 	{%- for item in constant('marttiphpbb\\menuitems\\util\\cnst::ITEMS') -%}
 		<tr>
 			<td>
-				<input type="checkbox" name="marttiphpbb_menuitems_en[{{- item -}}]"{%- if marttiphpbb_menuitems.acp.en[item] is defined %} checked="checked"{%- endif -%}>
+				<input type="checkbox" name="marttiphpbb_menuitems_en[{{- name -}}][{{- item -}}]"{%- if marttiphpbb_menuitems.acp.en[name][item] is defined %} checked="checked"{%- endif -%}>
 			</td>
 			<td>
-				<input type="number" name="marttiphpbb_menuitems_priority[{{- item -}}]" value="{{- marttiphpbb_menuitems.priority[item] ?? 0 -}}">
+				<input type="number" name="marttiphpbb_menuitems_priority[{{- name -}}][{{- item -}}]" value="{{- marttiphpbb_menuitems.priority[name][item] ?? 0 -}}">
 			</td>
 			<td>
 				{{- lang('ACP_MARTTIPHPBB_MENUITEMS_'~(item|upper)) -}}
