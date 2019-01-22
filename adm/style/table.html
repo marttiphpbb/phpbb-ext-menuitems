@@ -19,7 +19,7 @@
 				</label>
 			</td>
 			<td>
-				<input type="number" name="marttiphpbb_menuitems_priority[{{- name -}}][{{- item -}}]" value="{{- marttiphpbb_menuitems.acp[name][item].priority ?? 0 -}}">
+				<input type="number" name="marttiphpbb_menuitems_priority[{{- name -}}][{{- item -}}]" value="{{- marttiphpbb_menuitems.acp[name][item] ?? 0 -}}">
 			</td>
 		</tr>
 	{%- endfor -%}

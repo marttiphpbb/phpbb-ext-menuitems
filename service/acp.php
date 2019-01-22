@@ -34,18 +34,23 @@ class acp
 			return;
 		}
 
-		$set_items = [];
-
-		$items = $this->request->variable(cnst::ID, ['' => ['' => '']]);
 		$enabled_ary = $this->request->variable(cnst::NAME_EN, ['' => ['' => '']]);
 		$priority_ary = $this->request->variable(cnst::NAME_PRIORITY, ['' => ['' => 0]]);
 
-		foreach ($priority_ary as $extension_name => $ddd)
+		if (!isset($enabled_ary[$key]))
 		{
-
+			$this->store->remove_key($extension_name, $key);
+			return;
 		}
 
-		$this->store->set($extension_name, $key, $items[$key] ?? []);
+		$tpl_ary = [];
+
+		foreach ($enabled_ary[$key] as $tpl_event => $on)
+		{
+			$tpl_ary[$tpl_event] = $priority_ary[$key][$tpl_event] ?? 0;
+		}
+
+		$this->store->set($extension_name, $key, $tpl_ary);
 	}
 
 	public function assign_to_template(string $extension_name)

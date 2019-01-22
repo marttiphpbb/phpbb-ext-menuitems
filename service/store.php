@@ -90,11 +90,26 @@ class store
 		}
 	}
 
+	public function remove_key(string $extension_name, string $key):void
+	{
+		$this->load();
+		unset($this->items[$extension_name][$key]);
+
+		if (!$this->transaction)
+		{
+			$this->write();
+		}
+	}
+
 	public function remove_extension(string $extension_name):void
 	{
 		$this->load();
 		unset($this->items[$extension_name]);
-		$this->write();
+
+		if (!$this->transaction)
+		{
+			$this->write();
+		}
 	}
 
 	public function get_extensions():array
