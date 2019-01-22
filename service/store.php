@@ -26,7 +26,7 @@ class store
 		$this->cache = $cache;
 	}
 
-	private function load()
+	private function load():void
 	{
 		if ($this->items) {
 			return;
@@ -42,7 +42,7 @@ class store
 		$this->cache->put(cnst::CACHE_ID, $this->items);
 	}
 
-	private function write()
+	private function write():void
 	{
 		$this->config_text->set(cnst::ID, serialize($this->items));
 		$this->cache->put(cnst::CACHE_ID, $this->items);
@@ -56,28 +56,22 @@ class store
 	public function transaction_end():void
 	{
 		$this->transaction = false;
-		$this->write($this->local_cache);
-	}
-
-	public function set_all(array $items):void
-	{
-		$this->items = $items;
 		$this->write();
 	}
 
-	public function get_all(): array
+	public function get_all():array
 	{
 		$this->load();
 		return $this->items;
 	}
 
-	public function get(string $extension_name, string $key) : array
+	public function get(string $extension_name, string $key):array
 	{
 		$this->load();
 		return $this->items[$extension_name][$key] ?? [];
 	}
 
-	public function set(string $extension_name, string $key, array $template_events)
+	public function set(string $extension_name, string $key, array $template_events):void
 	{
 		$this->load();
 
@@ -90,23 +84,26 @@ class store
 			unset($this->items[$extension_name][$key]);
 		}
 
-		$this->write();
+		if (!$this->transaction)
+		{
+			$this->write();
+		}
 	}
 
-	public function remove_extension(string $extension_name)
+	public function remove_extension(string $extension_name):void
 	{
 		$this->load();
 		unset($this->items[$extension_name]);
 		$this->write();
 	}
 
-	public function get_extensions() : array
+	public function get_extensions():array
 	{
 		$this->load();
 		return array_keys($this->items);
 	}
 
-	public function ext_is_present(string $extension_name)
+	public function extension_is_present(string $extension_name):bool
 	{
 		$this->load();
 		return isset($this->items[$extension_name]);

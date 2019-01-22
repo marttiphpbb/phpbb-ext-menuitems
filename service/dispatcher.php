@@ -49,7 +49,7 @@ class dispatcher
 		{
 			foreach ($result['items'] as $ext_name => $menu_ary)
 			{
-				if (!$this->store->ext_is_present($ext_name))
+				if (!$this->store->extension_is_present($ext_name))
 				{
 					continue;
 				}
