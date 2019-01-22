@@ -17,6 +17,8 @@ class store
 	protected $config_text;
 	protected $cache;
 	protected $items = [];
+	protected $local_cache;
+	protected $transaction = false;
 
 	public function __construct(config_text $config_text, cache $cache)
 	{
@@ -46,13 +48,24 @@ class store
 		$this->cache->put(cnst::CACHE_ID, $this->items);
 	}
 
-	public function set_all(array $items)
+	public function transaction_start():void
+	{
+		$this->transaction = true;
+	}
+
+	public function transaction_end():void
+	{
+		$this->transaction = false;
+		$this->write($this->local_cache);
+	}
+
+	public function set_all(array $items):void
 	{
 		$this->items = $items;
 		$this->write();
 	}
 
-	public function get_all() : array
+	public function get_all(): array
 	{
 		$this->load();
 		return $this->items;
@@ -67,7 +80,16 @@ class store
 	public function set(string $extension_name, string $key, array $template_events)
 	{
 		$this->load();
-		$this->items[$extension_name][$key] = $template_events;
+
+		if (count($template_events))
+		{
+			$this->items[$extension_name][$key] = $template_events;
+		}
+		else
+		{
+			unset($this->items[$extension_name][$key]);
+		}
+
 		$this->write();
 	}
 

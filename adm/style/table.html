@@ -14,12 +14,12 @@
 		<tr>
 			<td>
 				<label for="marttiphpbb_menuitems_{{- name -}}_{{- item -}}">
-				<input type="checkbox" id="marttiphpbb_menuitems_{{- name -}}_{{- item -}}" name="marttiphpbb_menuitems_en[{{- name -}}][{{- item -}}]"{%- if marttiphpbb_menuitems.acp.en[name][item] is defined %} checked="checked"{%- endif -%}>
+				<input type="checkbox" id="marttiphpbb_menuitems_{{- name -}}_{{- item -}}" name="marttiphpbb_menuitems_en[{{- name -}}][{{- item -}}]"{%- if marttiphpbb_menuitems.acp[name][item] is defined %} checked="checked"{%- endif -%}>
 				&nbsp;{{- lang('ACP_MARTTIPHPBB_MENUITEMS_'~(item|upper)) -}}
 				</label>
 			</td>
 			<td>
-				<input type="number" name="marttiphpbb_menuitems_priority[{{- name -}}][{{- item -}}]" value="{{- marttiphpbb_menuitems.acp.priority[name][item] ?? 0 -}}">
+				<input type="number" name="marttiphpbb_menuitems_priority[{{- name -}}][{{- item -}}]" value="{{- marttiphpbb_menuitems.acp[name][item].priority ?? 0 -}}">
 			</td>
 		</tr>
 	{%- endfor -%}

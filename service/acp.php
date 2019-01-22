@@ -34,9 +34,16 @@ class acp
 			return;
 		}
 
+		$set_items = [];
+
 		$items = $this->request->variable(cnst::ID, ['' => ['' => '']]);
 		$enabled_ary = $this->request->variable(cnst::NAME_EN, ['' => ['' => '']]);
 		$priority_ary = $this->request->variable(cnst::NAME_PRIORITY, ['' => ['' => 0]]);
+
+		foreach ($priority_ary as $extension_name => $ddd)
+		{
+
+		}
 
 		$this->store->set($extension_name, $key, $items[$key] ?? []);
 	}

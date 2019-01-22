@@ -65,8 +65,10 @@ class dispatcher
 
 					$data['key'] = $key;
 
-					foreach ($template_events as $template_event)
+					foreach ($template_events as $template_event => $priority)
 					{
+						$data['priority'] = $priority;
+
 						if (isset($this->items[$template_event]))
 						{
 							$this->items[$template_event][] = $data;
@@ -76,6 +78,13 @@ class dispatcher
 						$this->items[$template_event] = [$data];
 					}
 				}
+			}
+
+			foreach ($this->items as &$item)
+			{
+				usort($item, function($a, $b){
+					return $a['priority'] < $b['priority'] ? -1 : 1;
+				});
 			}
 		}
 	}
