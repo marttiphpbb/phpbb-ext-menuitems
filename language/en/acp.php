@@ -17,6 +17,13 @@ if (empty($lang) || !is_array($lang))
 }
 
 $lang = array_merge($lang, [
+	'ACP_MARTTIPHPBB_MENUITEMS_UPDATE'
+	=> 'Please update your extension',
+	'ACP_MARTTIPHPBB_MENUITEMS_UPDATE_EXPLAIN'
+	=> 'Please update your extension to use the
+	newer dl_table.html acp template of the
+	%sMenu Item%s extension.
+	Or notify the author of this extension.',
 
 	'ACP_MARTTIPHPBB_MENUITEMS_SETTINGS_SAVED'
 	=> 'The settings have been saved successfully!',
