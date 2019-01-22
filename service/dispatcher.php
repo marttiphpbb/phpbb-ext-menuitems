@@ -43,7 +43,7 @@ class dispatcher
 		 * your include file. Also "key" is available in your included file.
 		 */
 		$vars = ['items'];
-		$result = $this->core_dispatcher->trigger_event('marttiphpbb.menuitems.add_items', compact($vars));
+		$result = $this->core_dispatcher->trigger_event('marttiphpbb.menuitems', compact($vars));
 
 		if (count($result['items']))
 		{
