@@ -41,7 +41,6 @@ class dispatcher
 		 * ];
 		 * "var" is an array or string passed as "var" to
 		 * your include file. Also "key" is available in your included file.
-		 * The menu item
 		 */
 		$vars = ['items'];
 		$result = $this->core_dispatcher->trigger_event('marttiphpbb.menuitems.add_items', compact($vars));

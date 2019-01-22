@@ -3,13 +3,12 @@
 	<dt>
 		<label for="marttiphpbb_menuitems_{{- name -}}">
 			{%- block label -%}
-				{{- lang('ACP_MARTTIPHPBB_MENUITEMS_ITEM_LOCATIONS') -}}
-			{%- endblock -%}			
+				{{- lang('ACP_MARTTIPHPBB_MENUITEMS_YOUR_LINK_NAME') -}}
+			{%- endblock -%}
 		</label>
 		{%- block explain -%}{%- endblock -%}
 	</dt>
 	<dd>
-		{%- include '@marttiphpbb_menuitems/include/select.html' with {'name': name} -%}
+		{%- include '@marttiphpbb_menuitems/table.html' -%}
 	</dd>
 </dl>
-

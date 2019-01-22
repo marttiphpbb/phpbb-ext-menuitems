@@ -1,4 +1,4 @@
-<table>
+<table class="table1 responsive zebra-table show-header">
 	<thead>
 		<tr>
 			<th>
@@ -7,22 +7,19 @@
 			<th>
 				{{- lang('ACP_MARTTIPHPBB_MENUITEMS_PRIORITY') -}}
 			</th>
-			<th>
-				{{- lang('ACP_MARTTIPHPBB_MENUITEMS_NAME') -}}
-			</th>
 		</tr>
 	</thead>
 	<tbody>
 	{%- for item in constant('marttiphpbb\\menuitems\\util\\cnst::ITEMS') -%}
 		<tr>
 			<td>
-				<input type="checkbox" name="marttiphpbb_menuitems_en[{{- name -}}][{{- item -}}]"{%- if marttiphpbb_menuitems.acp.en[name][item] is defined %} checked="checked"{%- endif -%}>
+				<label for="marttiphpbb_menuitems_{{- name -}}_{{- item -}}">
+				<input type="checkbox" id="marttiphpbb_menuitems_{{- name -}}_{{- item -}}" name="marttiphpbb_menuitems_en[{{- name -}}][{{- item -}}]"{%- if marttiphpbb_menuitems.acp.en[name][item] is defined %} checked="checked"{%- endif -%}>
+				&nbsp;{{- lang('ACP_MARTTIPHPBB_MENUITEMS_'~(item|upper)) -}}
+				</label>
 			</td>
 			<td>
 				<input type="number" name="marttiphpbb_menuitems_priority[{{- name -}}][{{- item -}}]" value="{{- marttiphpbb_menuitems.acp.priority[name][item] ?? 0 -}}">
-			</td>
-			<td>
-				{{- lang('ACP_MARTTIPHPBB_MENUITEMS_'~(item|upper)) -}}
 			</td>
 		</tr>
 	{%- endfor -%}
