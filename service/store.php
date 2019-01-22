@@ -1,10 +1,10 @@
 <?php
 
 /**
-* phpBB Extension - marttiphpbb menuitems
-* @copyright (c) 2014 - 2019 marttiphpbb <info@martti.be>
-* @license GNU General Public License, version 2 (GPL-2.0)
-*/
+ * phpBB Extension - marttiphpbb menuitems
+ * @copyright (c) 2014 - 2019 marttiphpbb <info@martti.be>
+ * @license GNU General Public License, version 2 (GPL-2.0)
+ */
 
 namespace marttiphpbb\menuitems\service;
 
@@ -26,15 +26,13 @@ class store
 
 	private function load()
 	{
-		if ($this->items)
-		{
+		if ($this->items) {
 			return;
 		}
 
 		$this->items = $this->cache->get(cnst::CACHE_ID);
 
-		if ($this->items)
-		{
+		if ($this->items) {
 			return;
 		}
 
@@ -54,13 +52,13 @@ class store
 		$this->write();
 	}
 
-	public function get_all():array
+	public function get_all() : array
 	{
 		$this->load();
 		return $this->items;
 	}
 
-	public function get(string $extension_name, string $key):array
+	public function get(string $extension_name, string $key) : array
 	{
 		$this->load();
 		return $this->items[$extension_name][$key] ?? [];
@@ -80,7 +78,7 @@ class store
 		$this->write();
 	}
 
-	public function get_extensions():array
+	public function get_extensions() : array
 	{
 		$this->load();
 		return array_keys($this->items);
