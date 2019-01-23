@@ -83,7 +83,7 @@ class dispatcher
 			foreach ($this->items as &$item)
 			{
 				usort($item, function($a, $b){
-					return $a['priority'] < $b['priority'] ? -1 : 1;
+					return $a['priority'] < $b['priority'] ? 1 : -1;
 				});
 			}
 		}
