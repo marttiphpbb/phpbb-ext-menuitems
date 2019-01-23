@@ -8,8 +8,8 @@ This phpBB extension provides menu links for other extensions
 
 ## Requirements
 
-phpBB 3.2.5+
-PHP 7.1+
+* phpBB 3.2.5+
+* PHP 7.1+
 
 ## Quick Install
 
