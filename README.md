@@ -42,7 +42,23 @@ These examples are taken from the [Menu Items Example](https://github.com/martti
 
 ![Menu](doc/menu.png)
 
-### Priority Example
+### Priority Examples
 
 The priority can be set for the rendering of the menu items in
 the same template event location.
+
+#### "Square" Link Higher Priority
+
+![ACP 1 Sqaure Link](doc/p1_acp_square.png)
+
+![ACP 1 Circle Link](doc/p1_acp_circle.png)
+
+![Menu 1](doc/p1_menu.png)
+
+#### "Circle" Link Higher Priority
+
+![ACP 2 Sqaure Link](doc/p2_acp_square.png)
+
+![ACP 2 Circle Link](doc/p2_acp_circle.png)
+
+![Menu 2](doc/p2_menu.png)
