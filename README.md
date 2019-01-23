@@ -31,3 +31,18 @@ You can install this on the latest release of phpBB 3.2 by following the steps b
 ## License
 
 [GPL-2.0](license.txt)
+
+## Screenshots
+
+These examples are taken from the [Menu Items Example](https://github.com/marttiphpbb/phpbb-ext-menuitemsexample) extension.
+
+### Simple Example of Menu Rendering
+
+![ACP](doc/acp.png)
+
+![Menu](doc/menu.png)
+
+### Priority Example
+
+The priority can be set for the rendering of the menu items in
+the same template event location.
